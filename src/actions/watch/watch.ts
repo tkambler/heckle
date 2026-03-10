@@ -13,11 +13,12 @@ function readNewLines(filePath: string, positions: Map<string, number>): string[
 
 function getGitDiff(projectDir: string): string {
   const opts = { cwd: projectDir, encoding: "utf-8" as const };
+  const quietOpts = { cwd: projectDir, encoding: "utf-8" as const, stdio: [null, "pipe", null] as [null, "pipe", null] };
   try {
     let base: string | null = null;
     for (const branch of ["main", "master"]) {
       try {
-        base = execSync(`git merge-base HEAD ${branch}`, opts).trim();
+        base = execSync(`git merge-base HEAD ${branch}`, quietOpts).trim();
         break;
       } catch { /* try next */ }
     }
@@ -65,7 +66,7 @@ function flush(buffer: string[], state: { busy: boolean }, projectDir: string, h
   child.on("close", () => {
     state.busy = false;
     if (output.trim()) {
-      const lines = output.trim().split("\n").map((l) => `🎤 ${l}`).join("\n");
+      const lines = output.trim().split("\n").filter((l) => l.trim()).map((l) => `🎤 ${l}`).join("\n");
       console.log(`\n${lines}\n`);
     }
   });

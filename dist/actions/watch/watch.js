@@ -12,11 +12,12 @@ function readNewLines(filePath, positions) {
 }
 function getGitDiff(projectDir) {
     const opts = { cwd: projectDir, encoding: "utf-8" };
+    const quietOpts = { cwd: projectDir, encoding: "utf-8", stdio: [null, "pipe", null] };
     try {
         let base = null;
         for (const branch of ["main", "master"]) {
             try {
-                base = execSync(`git merge-base HEAD ${branch}`, opts).trim();
+                base = execSync(`git merge-base HEAD ${branch}`, quietOpts).trim();
                 break;
             }
             catch { /* try next */ }
@@ -58,7 +59,7 @@ function flush(buffer, state, projectDir, heckleDir, persona) {
     child.on("close", () => {
         state.busy = false;
         if (output.trim()) {
-            const lines = output.trim().split("\n").map((l) => `🎤 ${l}`).join("\n");
+            const lines = output.trim().split("\n").filter((l) => l.trim()).map((l) => `🎤 ${l}`).join("\n");
             console.log(`\n${lines}\n`);
         }
     });
