@@ -2,7 +2,11 @@
 
 Heckle is a CLI tool that watches you use Claude Code and roasts you for it. It hooks into Claude Code's event system to monitor your prompts, then uses Claude to deliver sarcastic, cutting commentary about your work.
 
-Must be run from inside a git repository.
+> You spent actual brain calories asking an AI to insult people about bad code, while sitting in a repo literally named "heckle" - which is either the most self-aware thing you've ever done or a complete accident.
+
+> Congratulations, you created a file called `watch.ts` and filled it with absolutely nothing - which, coincidentally, is also what you contribute to the codebase. Claude opened your masterpiece and found the digital equivalent of a blank stare. Even the file is embarrassed to be associated with you.
+
+**Note:** Must be run from inside a git repository.
 
 ## How it works
 
