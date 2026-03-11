@@ -1,1 +1,1 @@
-export { runWatch } from "./watch.js";
+export { runWatch } from "./watch";

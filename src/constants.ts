@@ -1,3 +1,7 @@
+export type ClaudeSettings = {
+  hooks?: Record<string, Array<{ matcher?: string; hooks: Array<{ type: string; command: string }> }>>;
+};
+
 export const HOOK_EVENTS = [
   "PreToolUse",
   "PostToolUse",

@@ -1,21 +1,27 @@
 {
   "name": "@tkambler/heckle",
-  "version": "1.0.2",
-  "description": "",
-  "type": "module",
+  "version": "1.0.3",
+  "description": "Heckle is a CLI tool that watches you use Claude Code and roasts you for it.",
   "main": "dist/index.js",
   "bin": {
     "heckle": "dist/index.js"
   },
   "scripts": {
     "build": "tsc",
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "publish": "npm publish --access public"
   },
-  "author": "",
+  "author": "Tim Ambler <tkambler@gmail.com>",
   "license": "ISC",
+  "imports": {
+    "#utils": "./dist/utils.js",
+    "#constants": "./dist/constants.js"
+  },
   "dependencies": {
+    "commander": "^14.0.3"
+  },
+  "devDependencies": {
     "@types/node": "^25.4.0",
-    "commander": "^14.0.3",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }

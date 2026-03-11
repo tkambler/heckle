@@ -1,7 +1,8 @@
 import { existsSync, readFileSync } from "fs";
-import { homedir, EOL } from "os";
+import { EOL } from "os";
 import { join } from "path";
 import { spawn, execSync } from "child_process";
+import { getHeckleDir } from "#utils";
 
 function readNewLines(filePath: string, positions: Map<string, number>): string[] {
   if (!existsSync(filePath)) return [];
@@ -75,7 +76,7 @@ function flush(buffer: string[], state: { busy: boolean }, projectDir: string, h
 export function runWatch(options: { name: string; persona?: string }) {
   const { name, persona } = options;
   const projectDir = process.cwd();
-  const heckleDir = join(homedir(), ".heckle");
+  const heckleDir = getHeckleDir();
 
   try {
     execSync("git rev-parse --git-dir", { cwd: projectDir, stdio: "ignore" });
