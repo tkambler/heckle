@@ -56,6 +56,18 @@ heckle init -n <name>
 
 - `-n, --name <name>` — A unique name for this project (lowercase letters, numbers, `_`, `-`). Used to namespace the log files in `~/.heckle/`.
 
+### Remove hooks from a project
+
+To uninstall the Claude Code hooks from a project:
+
+```sh
+heckle uninit -n <name>
+```
+
+- `-n, --name <name>` — Must match the name used during `init`.
+
+This removes all heckle-related entries from `.claude/settings.json` but leaves the log files in `~/.heckle/` intact.
+
 ### Watch and roast
 
 In a separate terminal, start the watcher:
